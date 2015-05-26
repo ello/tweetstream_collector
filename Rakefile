@@ -7,7 +7,7 @@ Rails.application.load_tasks
 
 namespace :tweetstream do
   task :import => :environment do
-    TweetStream::Client.new.track('#ello', 'ello.co') do |t|
+    TweetStream::Client.new.track('#ello', '@elloworld', 'ello.co') do |t|
       CollectedTweet.where(uri: t.uri).first_or_initialize.tap do |ct|
         ct.assign_attributes(created_at: t.created_at,
                              body: t.full_text,
